@@ -26,13 +26,14 @@ const mainState = {
 
     this.bird = game.add.sprite(80, 240, 'bird');
     this.bird.anchor.set(0.5);
-    this.birdSpeed = 125;
-    this.birdFlapPower = 300;
+    this.birdSpeed = 200;
+    this.birdFlapPower = 350;
     this.birdJustCrossedPipes = false;
     game.physics.arcade.enable(this.bird);
     this.bird.body.gravity.y = 800;
 
     this.flapSound = game.add.audio('flap');
+    this.dieSound = game.add.audio('die');
 
     this.pipes = game.add.group();
     this.pipeHole = 120;
@@ -46,6 +47,7 @@ const mainState = {
   },
 
   die: function () {
+    this.dieSound.play();
     game.state.start('main');
   },
 
@@ -58,9 +60,10 @@ const mainState = {
     game.scale.scaleMode = Phaser.ScaleManager.NO_SCALE;
     game.scale.pageAlignHorizontally = true;
     game.scale.pageAlignVertically = true;
-    game.load.image('bird', 'assets/8.bit.robin.png');
-    game.load.image('pipe', 'assets/pipe.png');
-    game.load.audio('flap', 'assets/jump.mp3');
+    game.load.image('bird', 'assets/Robin.png');
+    game.load.image('pipe', 'assets/Tree.png');
+    game.load.audio('flap', 'assets/fart.mp3');
+    game.load.audio('die', 'assets/annoying_laugh.wav');
   },
 
   update: function () {
